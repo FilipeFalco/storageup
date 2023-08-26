@@ -1,12 +1,17 @@
 name: bohr.io deploy
-on: 
+on:
   push:
+    paths:
+      - "frontend/**"
   repository_dispatch:
     types: [bohr-dispatch]
 permissions: write-all
 jobs:
   deploy:
     name: Deploy on bohr.io
+    defaults:
+      run:
+        working-directory: frontend
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
